@@ -37,6 +37,31 @@ data_sources:
     project: 'cashslide-847f7'
     keyfile: '/Workspace/current/wheelhouse/gcp-keyfile.json'
 
+    smart_variables:
+     tags: ["FashionF_1", "FashionM_1", "Restaurant_1", "Puzzle_1"]
+     occupation_id: "SELECT id, name FROM occupations ORDER BY name ASC"
+
+    awesome_variables:
+      task:
+        checkbox:
+          tags: {"FashionF >= 1": "FashionF", "FashionM >= 1": "FashionM", "Restaurant >= 1": "Restaurant", "Puzzle1 >= 1": "Puzzle" }
+
+#    awesome_variables:
+#      task:
+#        checkbox:
+#          tags:
+#            values: [
+#              {
+#                 "tag" : "FashionF",
+#                 "query" : "FashionF >= 1",
+#              },
+#              {
+#                 "tag" : "FashionF",
+#                 "query" : "FashionF >= 1",
+#              }
+#            ]
+#            type : 'checkbox'
+
   Athena:
     adapter: athena
     database: database

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cashslide-847f7",
+  "private_key_id": "d681d95abbecb1ab6bb937643e537ba791e86be2",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCguZEUGbcxKwN3\nN9mOMy85tspfx0Q3f+SSbI9SjqtIf+K79ieXIhXS/VxU2d4VSj4PMivVNlKnHtCl\nW2GHDaaMHyk4Fiz7cCivVpgM6Q4bIy5bXBRJ3q9ruuNYA0GgFZEuYV8XjSlYcyXU\nLvojKLtDHwNe4lS1TrASPg2X2KVm9KT2qldOo8KhUwYKm09dXvawjFeh4CpaczCc\nT5SKk5pnhvPkMwEfwpBwe08Pw5N0MYpDqR6ifZNwSCwvyYI8S0VtM6XesJZ6KyU4\n5810IirgRh36jbywU5LPuarAsJ3rpDwvicYfWqlyPBK7a3At5DsGGf3NR6KSpk0w\nHcwhSZNLAgMBAAECggEALQTtazjsxDvtI5akPJ1/q+XUd9GD/Ru4tX7tAk3uEkeo\nBcgkPMQSYuAO3cGM4F/EVFNUTcuCiUcrYDXhcofTT8pmrEwh22gGLV7PBka9acKH\n+JUpJavXbRCTH5MB7co8uUYS8bDblOfj/7QM4o5FLb7hHdG9sm9RCDsTaaYIZnbL\n+SCO/68pYmfTFXi7doqpN+05cypmfr0zpC9k1/BD0o4N31K2YWA7NrSSIjYjgmCa\no5nRsxjjzzZMtcSvlLqRg2RJ91s5qX5MounsDZqT0aJbJ3bdG04I/tbY6edo0Zg0\nOG2B9qd8xPygsHRqrlk1n+dqZFguSw+izKWzCw+JUQKBgQDhvJ6bTfcrmixwbmSv\neEJnPXxcdMMHqpGwCRlMk9Jtev1CuqybFNw3MiC3FZUDgk6BxT0ERlrE7/oxatsw\ngn74lleUGEvU5cqHiVpwyKNL2dKB1P2MjM0x8wAH48AXS+Dd7WwwEIURNtGhBYTE\nE73ZkxHaSN2n+ThCrgp8J5mn8wKBgQC2RbX+r/DPoBbuOwdgsIVWVXpBbcu2MCSh\nl8kkZduiOSSYHE9xaDOV0wRwlXoGqCeah5eUzcG7fesbKf1Kv0bPJdm4uR1asVCs\nnll08SGcYEXimkKSl7Q6OHnExLKRvRq9e/OwIk9j0VqM+R4XH8ynotnOpcAAKQdu\nV0iE8bdVSQKBgFkKqNmD4Hp/fwX+VZLtcev9Ud+6Yu/UNVFl1Wfiaz+qIto+fjVR\n/id7i3IMflH7BXKk1ZOpGMbUDjGN/9Xbs6/kxbjx+H+LAN+Dq3wPeHJEAogZ9sWJ\nCKuqOZnjGXNXB+UicOloqsSGhhvo7FzXmKyJGaKr2VsXsDyFIDem+zJHAoGBAJzC\nn5+HWah3msEQ62tw5Xw2z4puD4GFLjv7+vXe1GJUmvBniLuUTqlQbsUVCXmoLUdt\nziQgQboqtYULO9iJYTDO8M06B9D0JtoO5gj5SVrgQbp9yTuiVVKtN6zPLnTBGrpU\nXGTjXTwP1bzgk8x3gN+7428ihlqc7tMrJieQa4hhAoGAJ+q+qIQcTaM6ObfD2tem\nuLFTfQmJ7RF8V3fkHebENq9BT4k5EPeIE/rOdeFTCtlWvP6zUAAYEbTZTHa49vPy\ngJLtLKRTKmnAVJnX4pQvJS64uuDkhxyRX6R3KbrrWg+yEXkYCH1b29dG4oVq7HM8\nP7hrMcfKpJNKaJcQmKy1HCU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "bigquery-wheelhouse@cashslide-847f7.iam.gserviceaccount.com",
+  "client_id": "118378567107216158377",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigquery-wheelhouse%40cashslide-847f7.iam.gserviceaccount.com"
+}
