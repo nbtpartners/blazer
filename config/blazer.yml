@@ -34,7 +34,7 @@ data_sources:
 
   Big Query:
     adapter: bigquery
-    project: 'cashslide-847f7'
+    project: cashslide-847f7
     keyfile: '/Workspace/current/wheelhouse/gcp-keyfile.json'
 
     smart_variables:
@@ -42,25 +42,28 @@ data_sources:
      occupation_id: "SELECT id, name FROM occupations ORDER BY name ASC"
 
     awesome_variables:
-      task:
-        checkbox:
-          tags: {"FashionF >= 1": "FashionF", "FashionM >= 1": "FashionM", "Restaurant >= 1": "Restaurant", "Puzzle1 >= 1": "Puzzle" }
+      tags:
+        value: [
+          {"name" : "FashionF", "condition" : "FashionF >= 1"},
+          {"name" : "test", "condition" : "FashionF >= 12"}
+          ]
+        style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
+        type: condition  # string | condition | date | datetime
+      keyword:
+        value: [
+          {"name" : "FashionF", "condition" : "FashionF >= 1"},
+          {"name" : "test", "condition" : "FashionF >= 12"}
+          ]
+        style: text  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
+        type: condition  # string | condition | date | datetime
 
-#    awesome_variables:
-#      task:
-#        checkbox:
-#          tags:
-#            values: [
-#              {
-#                 "tag" : "FashionF",
-#                 "query" : "FashionF >= 1",
-#              },
-#              {
-#                 "tag" : "FashionF",
-#                 "query" : "FashionF >= 1",
-#              }
-#            ]
-#            type : 'checkbox'
+      start_date:
+        value: [
+          {"name" : "FashionF", "condition" : "FashionF >= 1"},
+          {"name" : "test", "condition" : "FashionF >= 12"}
+          ]
+        style: value  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
+        type: condition  # string | condition | date | datetime
 
   Athena:
     adapter: athena
