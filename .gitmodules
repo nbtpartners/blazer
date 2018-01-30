@@ -1,0 +1,3 @@
+[submodule "vendor/private_gems/blazer"]
+	path = vendor/private_gems/blazer
+	url = git@github.com:sangkyoonnam/blazer.git
