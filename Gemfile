@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'blazer', path: './vendor/private_gems/blazer'
 
 gem 'google-cloud-bigquery', '0.30.0'
+gem 'google-cloud-storage', '1.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

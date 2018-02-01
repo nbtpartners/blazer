@@ -44,8 +44,15 @@ data_sources:
     awesome_variables:
       tags:
         value: [
-            { "name" : "FashionF", "condition" : "FashionF >= 1" },
-            { "name" : "test", "condition" : "FashionF >= 12" }
+          {"name" : "FashionF", "condition" : "FashionF >= 1"},
+          {"name" : "FashionM", "condition" : "FashionM >= 1"},
+          {"name" : "Restaurant", "condition" : "Restaurant >= 1"},
+          {"name" : "Puzzle", "condition" : "Puzzle >= 1"},
+          {"name" : "Finance", "condition" : "Finance >= 1"},
+          {"name" : "Beauty", "condition" : "Beauty >= 1"},
+          {"name" : "Baby", "condition" : "Baby >= 1"},
+          {"name" : "Simulation", "condition" : "Simulation >= 1"},
+          {"name" : "Real", "condition" : "Real >= 1"},
           ]
         style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
         type: condition  # string | condition | date | datetime
