@@ -44,27 +44,38 @@ data_sources:
     awesome_variables:
       tags:
         value: [
-          {"name" : "FashionF", "condition" : "FashionF >= 1"},
-          {"name" : "test", "condition" : "FashionF >= 12"}
+            { "name" : "FashionF", "condition" : "FashionF >= 1" },
+            { "name" : "test", "condition" : "FashionF >= 12" }
           ]
         style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
         type: condition  # string | condition | date | datetime
-      keyword:
+      gender:
         value: [
-          {"name" : "FashionF", "condition" : "FashionF >= 1"},
-          {"name" : "test", "condition" : "FashionF >= 12"}
+            { "name" : "전체", "condition" : "true" },
+            { "name" : "남자", "condition" : "sex = 1" },
+            { "name" : "여자", "condition" : "sex = 2" }
           ]
-        style: text  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
+        style: select  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
         type: condition  # string | condition | date | datetime
-
-      start_date:
+      marriage:
         value: [
-          {"name" : "FashionF", "condition" : "FashionF >= 1"},
-          {"name" : "test", "condition" : "FashionF >= 12"}
+            { "name" : "전체", "condition" : "true" },
+            { "name" : "미혼", "condition" : "marriage = 0" },
+            { "name" : "기혼", "condition" : "marriage = 1" }
           ]
-        style: value  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
+        style: select  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | text
         type: condition  # string | condition | date | datetime
-
+      age:
+        value: [
+            { "name" : "10대", "condition" : "(EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age >= 10 AND EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age < 20)" },
+            { "name" : "20대", "condition" : "(EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age >= 20 AND EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age < 30)" },
+            { "name" : "30대", "condition" : "(EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age >= 30 AND EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age < 40)" },
+            { "name" : "40대", "condition" : "(EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age >= 40 AND EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age < 50)" },
+            { "name" : "50대", "condition" : "(EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age >= 50 AND EXTRACT(ISOYEAR FROM CURRENT_DATE()) - age < 60)" },
+            { "name" : "60대 이상", "condition" : "(year - age >= 60 AND)" },
+          ]
+        style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
+        type: condition  # string | condition | date | datetime
   Athena:
     adapter: athena
     database: database
