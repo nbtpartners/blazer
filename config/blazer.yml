@@ -35,7 +35,7 @@ data_sources:
   Big Query:
     adapter: bigquery
     project: cashslide-847f7
-    keyfile: '/Workspace/current/wheelhouse/gcp-keyfile.json'
+    keyfile: './gcp-keyfile.json'
 
     smart_variables:
      tags: ["FashionF_1", "FashionM_1", "Restaurant_1", "Puzzle_1"]
@@ -53,6 +53,56 @@ data_sources:
           {"name" : "Baby", "condition" : "Baby >= 1"},
           {"name" : "Simulation", "condition" : "Simulation >= 1"},
           {"name" : "Real", "condition" : "Real >= 1"},
+          {"name" : "Luxury", "condition" : "Luxury >= 1"},
+          {"name" : "Kids", "condition" : "Kids >= 1"},
+          {"name" : "Board", "condition" : "Board >= 1"},
+          {"name" : "Medical", "condition" : "Medical >= 1"},
+          {"name" : "Cosmetic", "condition" : "Cosmetic >= 1"},
+          {"name" : "Language", "condition" : "Language >= 1"},
+          {"name" : "RPG", "condition" : "RPG >= 1"},
+          {"name" : "Fitness", "condition" : "Fitness >= 1"},
+          {"name" : "Shopping", "condition" : "Shopping >= 1"},
+          {"name" : "Middle", "condition" : "Middle >= 1"},
+          {"name" : "Action", "condition" : "Action >= 1"},
+          {"name" : "SportsG", "condition" : "SportsG >= 1"},
+          {"name" : "Membership", "condition" : "Membership >= 1"},
+          {"name" : "License", "condition" : "License >= 1"},
+          {"name" : "SportsA", "condition" : "SportsA >= 1"},
+          {"name" : "Sports", "condition" : "Sports >= 1"},
+          {"name" : "Golf", "condition" : "Golf >= 1"},
+          {"name" : "Grocery", "condition" : "Grocery >= 1"},
+          {"name" : "Media", "condition" : "Media >= 1"},
+          {"name" : "Strategy", "condition" : "Strategy >= 1"},
+          {"name" : "Leisure", "condition" : "Leisure >= 1"},
+          {"name" : "Electronics", "condition" : "Electronics >= 1"},
+          {"name" : "Movies", "condition" : "Movies >= 1"},
+          {"name" : "Smartphone", "condition" : "Smartphone >= 1"},
+          {"name" : "Auto", "condition" : "Auto >= 1"},
+          {"name" : "Pet", "condition" : "Pet >= 1"},
+          {"name" : "Music", "condition" : "Music >= 1"},
+          {"name" : "High", "condition" : "High >= 1"},
+          {"name" : "Date", "condition" : "Date >= 1"},
+          {"name" : "Living", "condition" : "Living >= 1"},
+          {"name" : "Webcomic", "condition" : "Webcomic >= 1"},
+          {"name" : "Wedding", "condition" : "Wedding >= 1"},
+          {"name" : "Cooking", "condition" : "Cooking >= 1"},
+          {"name" : "Books", "condition" : "Books >= 1"},
+          {"name" : "Hotels", "condition" : "Hotels >= 1"},
+          {"name" : "Current", "condition" : "Current >= 1"},
+          {"name" : "Coffee", "condition" : "Coffee >= 1"},
+          {"name" : "Tickets", "condition" : "Tickets >= 1"},
+          {"name" : "Car", "condition" : "Car >= 1"},
+          {"name" : "Donation", "condition" : "Donation >= 1"},
+          {"name" : "Liquor", "condition" : "Liquor >= 1"},
+          {"name" : "Others", "condition" : "Others >= 1"},
+          {"name" : "Travel", "condition" : "Travel >= 1"},
+          {"name" : "Event", "condition" : "Event >= 1"},
+          {"name" : "Delivery", "condition" : "Delivery >= 1"},
+          {"name" : "PC", "condition" : "PC >= 1"},
+          {"name" : "Credit", "condition" : "Credit >= 1"},
+          {"name" : "Snack", "condition" : "Snack >= 1"},
+          {"name" : "Game", "condition" : "Game >= 1"},
+
           ]
         style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
         type: condition  # string | condition | date | datetime
