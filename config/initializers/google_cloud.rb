@@ -1,16 +1,18 @@
 class GoogleCloud
   def initialize
-    @bigquery ||= begin
-      require "google/cloud/bigquery"
-      Google::Cloud::Bigquery.new(
-          project: YAML.load_file("./config.yml")['development']['big_query']['project'],
-          keyfile: YAML.load_file("./config.yml")['development']['big_query']['keyfile']
-      )
-    end
-    @storage = storage = Google::Cloud::Storage.new(
+    require "google/cloud/bigquery"
+    require "google/cloud/storage"
+
+    @bigquery = Google::Cloud::Bigquery.new(
         project: YAML.load_file("./config.yml")['development']['big_query']['project'],
         keyfile: YAML.load_file("./config.yml")['development']['big_query']['keyfile']
     )
+
+    @storage = Google::Cloud::Storage.new(
+        project: YAML.load_file("./config.yml")['development']['big_query']['project'],
+        keyfile: YAML.load_file("./config.yml")['development']['big_query']['keyfile']
+      )
+
     @bucket = storage.bucket "cashslide_wheelhouse"
   end
 
@@ -20,6 +22,14 @@ class GoogleCloud
 
   def bucket
     @bucket
+  end
+
+  def bigquery
+    @bigquery
+  end
+
+  def query(sql)
+    @bigquery.query sql
   end
 
   def bucket_link
@@ -35,9 +45,16 @@ class GoogleCloud
     query_job.wait_until_done!
 
     if !query_job.failed?
-      res= query_job.destination.extract_job file_path, format: "csv"
+      res = query_job.destination.extract_job file_path, format: "csv"
+      res.wait_until_done!
       full_link = res.destinations.first # 어레이로 반환함
-      full_link.remove bucket_link
+
+      remote_file_link = full_link.remove bucket_link
+
+      remote_file = @bucket.file remote_file_link
+      down_file = remote_file.download "./tmp/#{remote_file_link.split('/').last}"
+
+      return down_file
     else
       ''
     end
