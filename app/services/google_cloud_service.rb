@@ -1,4 +1,4 @@
-class GoogleCloud
+class GoogleCloudService  #sigleton 모듈이 필요할지는 나중에 알아보자
   def initialize
     require "google/cloud/bigquery"
     require "google/cloud/storage"
@@ -11,7 +11,7 @@ class GoogleCloud
     @storage = Google::Cloud::Storage.new(
         project: YAML.load_file("./config.yml")['development']['big_query']['project'],
         keyfile: YAML.load_file("./config.yml")['development']['big_query']['keyfile']
-      )
+    )
 
     @bucket = storage.bucket "cashslide_wheelhouse"
   end
@@ -29,7 +29,7 @@ class GoogleCloud
   end
 
   def query(sql)
-    @bigquery.query sql
+    bigquery.query(sql)
   end
 
   def bucket_link
