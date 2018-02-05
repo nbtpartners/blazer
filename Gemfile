@@ -36,8 +36,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Blazer
 gem 'blazer', path: './vendor/private_gems/blazer'
 
+# Cloud gem
+
+# bigquery
 gem 'google-cloud-bigquery', '0.30.0'
 gem 'google-cloud-storage', '1.9.0'
+
+# aws
+gem 'aws-sdk', '~> 2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,5 +65,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'aws-sdk', '~> 2'
+
+# 회원인증 및 권한설정을 위한 젬
+gem 'devise'     # 회원가입 및 인증
+gem 'rolify'     # role 관리
+gem 'authority'  # 권한설정
 
