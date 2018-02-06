@@ -1,4 +1,4 @@
-class GoogleCloudService  #sigleton 모듈이 필요할지는 나중에 알아보자
+class GoogleCloud  #sigleton 모듈이 필요할지는 나중에 알아보자
   def initialize
     require "google/cloud/bigquery"
     require "google/cloud/storage"

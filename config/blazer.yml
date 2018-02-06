@@ -40,8 +40,8 @@ data_sources:
     awesome_variables:
       target_data:
         value: [
-                { "name" : "device_id", "condition" : "users.device_id" },
-                { "name" : "google_ad_id", "condition" : "users.google_ad_id" },
+                { "name" : "device_id", "condition" : "device_id" },
+                { "name" : "google_ad_id", "condition" : "google_ad_id" },
                 { "name" : "전체 개수", "condition" : "count(*)" }
               ]
         style: select
@@ -106,7 +106,7 @@ data_sources:
           {"name" : "Credit", "condition" : "Credit >= 1"},
           {"name" : "Snack", "condition" : "Snack >= 1"},
           {"name" : "Game", "condition" : "Game >= 1"},
-
+          
           ]
         style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
         type: condition  # string | condition | date | datetime
