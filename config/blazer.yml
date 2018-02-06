@@ -37,11 +37,15 @@ data_sources:
     project: cashslide-847f7
     keyfile: './gcp-keyfile.json'
 
-    smart_variables:
-     tags: ["FashionF_1", "FashionM_1", "Restaurant_1", "Puzzle_1"]
-     occupation_id: "SELECT id, name FROM occupations ORDER BY name ASC"
-
     awesome_variables:
+      target_data:
+        value: [
+                { "name" : "device_id", "condition" : "users.device_id" },
+                { "name" : "google_ad_id", "condition" : "users.google_ad_id" },
+                { "name" : "전체 개수", "condition" : "count(*)" }
+              ]
+        style: select
+        type: condition
       tags:
         value: [
           {"name" : "FashionF", "condition" : "FashionF >= 1"},
@@ -170,3 +174,4 @@ check_schedules:
   - "1 day"
   - "1 hour"
   - "5 minutes"
+
