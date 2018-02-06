@@ -3,7 +3,6 @@ development:
     project: cashslide-847f7
     keyfile: './gcp-keyfile.json'
 
-
 production:
   big_query:
     project: cashslide-847f7

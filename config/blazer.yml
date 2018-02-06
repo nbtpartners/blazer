@@ -92,7 +92,7 @@ data_sources:
           {"name" : "Cooking", "condition" : "Cooking >= 1"},
           {"name" : "Books", "condition" : "Books >= 1"},
           {"name" : "Hotels", "condition" : "Hotels >= 1"},
-          {"name" : "Current", "condition" : "Current >= 1"},
+          {"name" : "Current", "condition" : "dmp_clusters.Current >= 1"},
           {"name" : "Coffee", "condition" : "Coffee >= 1"},
           {"name" : "Tickets", "condition" : "Tickets >= 1"},
           {"name" : "Car", "condition" : "Car >= 1"},
@@ -106,7 +106,7 @@ data_sources:
           {"name" : "Credit", "condition" : "Credit >= 1"},
           {"name" : "Snack", "condition" : "Snack >= 1"},
           {"name" : "Game", "condition" : "Game >= 1"},
-          
+
           ]
         style: checkbox  # (value에서 선택 select | radio | checkbox | (여기서부터는 직접 입력) datepicker | textfield
         type: condition  # string | condition | date | datetime
