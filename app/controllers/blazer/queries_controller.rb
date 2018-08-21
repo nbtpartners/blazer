@@ -127,7 +127,15 @@ module Blazer
       @statement = @query.statement.dup  # 왜 이렇게 하나 싶었는데 값의 오염을 막기 위해서
       process_vars(@statement, @query.data_source)
       process_tables(@statement, @query.data_source)
-      file = @cloud.extract_url(@statement, @query.id)
+      process_file_link(@statement, @query.data_source)
+
+      options = {}
+
+      @bind_links.map{ |link|
+        options[link] = params[link]
+      }
+
+      file = @cloud.extract_url(@statement, @query.id, options)
       file_name = file.path.gsub('./','')
       csv_read = CSV.read(file.path)
 
