@@ -104,8 +104,13 @@ module Blazer
       temp_file_path = "CSV/#{time}/"
       temp_file_name = "#{variable_params[:start_at]}_#{variable_params[:end_at]}_#{@query.name}.csv"
       local_file_path = "#{Rails.root}/tmp/upload/#{temp_file_name}"
+      options = {}
 
-      query_result = GoogleCloud.new.execute_query(@statement)
+      @bind_links.map{ |link|
+        options[link] = params[link]
+      }
+
+      query_result = @cloud.execute_query(@statement, options)
 
       CSV.open(local_file_path, 'wb') do |csv|
         query_result.map { |query| csv << Array.new(query.map { |k, v| v }) }
