@@ -129,17 +129,27 @@ module Blazer
       process_tables(@statement, @query.data_source)
       process_file_link(@statement, @query.data_source)
 
-      options = {}
+      if @query.data_source == 'MySQL'
+        @data_source = Blazer.data_sources[@query.data_source]
+        @result = @data_source.run_statement(@statement)
+        csv_keys = @result.columns
+        file_name = "#{Date.today}_sql_result.csv"
+        csv_read = @result.rows
+      else
+        options = {}
 
-      @bind_links.map{ |link|
-        options[link] = params[link]
-      }
+        @bind_links.map{ |link|
+          options[link] = params[link]
+        }
 
-      file = @cloud.extract_url(@statement, @query.id, options)
-      file_name = file.path.gsub('./','')
-      csv_read = CSV.read(file.path)
+        file = @cloud.extract_url(@statement, @query.id, options)
+        file_name = file.path.gsub('./','')
+        csv_read = CSV.read(file.path)
+      end
 
       export_csv = CSV.generate do |csv|
+        csv << ["\xEF\xBB\xBF"]
+        csv << csv_keys if csv_keys.present?
         csv_read.each do |row|
           csv << row
         end
