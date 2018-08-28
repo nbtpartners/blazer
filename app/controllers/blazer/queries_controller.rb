@@ -99,6 +99,7 @@ module Blazer
       @statement = @query.statement.dup
       process_vars(@statement, @query.data_source)
       process_tables(@statement, @query.data_source)
+      process_file_link(@statement, @query.data_source)
 
       time = Time.now.strftime('%Y%m%d')
       temp_file_path = "CSV/#{time}/"
