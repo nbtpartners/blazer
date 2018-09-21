@@ -75,7 +75,7 @@
               <span id="check" class="glyphicon" style="display:none">&#xe013;</span>
               <input type="text" id="csv_upload" name="<%= var %>" hidden/>
             <% elsif %w(text value).include? awesome_vars['style'] %>
-              <input type='text' name='<%= var %>'/>
+              <input type='text' name='<%= var %>' onblur="str_check(this);"/>
             <% else %>
               radio button
             <% end %>
@@ -256,5 +256,16 @@
           $("#results").addClass("query-error").html(message)
       }
 
+      function str_check(tag){
+          var names = ['ad_ids'];
+          if(names.indexOf(tag.name) != -1 && tag.value) {
+              var value = trim(tag.value);
+              tag.value = value.replace(/\s+/g,',');
+          }
+      }
+
+      function trim(str) {
+          return str.replace(/^\s+|\s+$/g,"");
+      }
   </script>
 <% end %>
