@@ -15,7 +15,7 @@ module Blazer
           end
       end
 
-      def run_statement(statement, comment)
+      def run_statement(statement, comment, options={})
         columns = []
         rows = []
         error = nil
