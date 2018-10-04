@@ -151,7 +151,7 @@ module Blazer
           end
         end
 
-        render :csv => ( send_data file, type: "text/csv; charset=utf-8; header=present", disposition: "attachment; filename=\"#{file_name}""" )
+        send_data file, type: "text/csv; charset=utf-8; header=present", disposition: "attachment; filename=\"#{file_name}"""
       else
         options = {}
 
