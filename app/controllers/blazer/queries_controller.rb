@@ -142,6 +142,14 @@ module Blazer
         csv_keys = @result.columns
         file_name = "#{Date.today}_sql_result.csv"
         csv_read = @result.rows
+
+        file = CSV.generate do |csv|
+          csv << ["\xEF\xBB\xBF"]
+          csv << csv_keys if csv_keys.present?
+          csv_read.each do |row|
+            csv << row
+          end
+        end
       else
         options = {}
 
@@ -150,23 +158,11 @@ module Blazer
         }
 
         file = @cloud.extract_url(@statement, @query.id, options)
-        file_name = file.path.gsub('./','')
-        csv_read = CSV.read(file.path)
       end
 
-      export_csv = CSV.generate do |csv|
-        csv << ["\xEF\xBB\xBF"]
-        csv << csv_keys if csv_keys.present?
-        csv_read.each do |row|
-          csv << row
-        end
-      end
-
-      respond_to do |format|
-        format.csv do
-          send_data export_csv, type: "text/csv; charset=utf-8; header=present", disposition: "attachment; filename=\"#{file_name}"""
-        end
-      end
+      send_file file
+      #TODO 다운로드 후에 로컬에 파일을 삭제하는 로직이 필요
+      # FileUtils.rm(file.path)
     end
 
     def run
