@@ -205,38 +205,40 @@
 
       var export_to = function (event) {
           $("#bind_").submit();
-      }
+      };
 
       function show_link(e) {
           data = $("#bind_").serializeObject();
-          data['query_id'] = <%=@query.id%>
+          data['query_id'] = <%=@query.id%>;
 
-              $.ajax({
-                  url: '/blazer/queries/show_link',
-                  data: data,
-                  type: 'POST',
-                  success: function (result) {
-                      alert('성공!');
-                      console.log(result);
-                      test = result;
-                      $("#gcs_link").text(result["gcs_file_link"]);
-                  }
-              });
+          $("#gcs_link").text('Loading...');
+          $.ajax({
+              url: '/blazer/queries/show_link',
+              data: data,
+              type: 'POST',
+              success: function (result) {
+                  alert('성공!');
+                  console.log(result);
+                  test = result;
+                  $("#gcs_link").text(result["gcs_file_link"]);
+              }
+          });
       }
 
       function upload_s3(e) {
           data = $("#bind_").serializeObject();
-          data['query_id'] = <%=@query.id%>
+          data['query_id'] = <%=@query.id%>;
 
-              $.ajax({
-                  url: '/blazer/queries/upload_s3',
-                  data: data,
-                  type: 'POST',
-                  success: function (result) {
-                      alert('리타겟팅 링크 추출 완료.');
-                      $("#retargeting_link").text(result["retargeting_link"]);
-                  }
-              });
+          $("#retargeting_link").text('Loading...');
+          $.ajax({
+              url: '/blazer/queries/upload_s3',
+              data: data,
+              type: 'POST',
+              success: function (result) {
+                  alert('리타겟팅 링크 추출 완료.');
+                  $("#retargeting_link").text(result["retargeting_link"]);
+              }
+          });
       }
 
       function run(e) {
