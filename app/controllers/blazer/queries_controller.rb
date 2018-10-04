@@ -150,6 +150,8 @@ module Blazer
             csv << row
           end
         end
+
+        render :csv => ( send_data file, type: "text/csv; charset=utf-8; header=present", disposition: "attachment; filename=\"#{file_name}""" )
       else
         options = {}
 
@@ -158,9 +160,9 @@ module Blazer
         }
 
         file = @cloud.extract_url(@statement, @query.id, options)
-      end
 
-      send_file file
+        send_file file
+      end
       #TODO 다운로드 후에 로컬에 파일을 삭제하는 로직이 필요
       # FileUtils.rm(file.path)
     end
