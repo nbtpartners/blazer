@@ -123,7 +123,7 @@ module Blazer
         query_result.map { |query| csv << Array.new(query.map { |k, v| v }) }
       end
 
-      AwsS3Service.new.upload_file(temp_file_path, temp_file_name, local_file_path)
+      AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}/part-00000", local_file_path)
 
       FileUtils.rm(local_file_path)
 
