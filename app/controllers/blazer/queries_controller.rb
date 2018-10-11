@@ -117,15 +117,9 @@ module Blazer
         options[link] = params[link]
       }
 
-      query_result = @cloud.execute_query(@statement, options)
+      file = @cloud.extract_url(@statement, @query.id, options)
 
-      CSV.open(local_file_path, 'wb') do |csv|
-        query_result.map { |query| csv << Array.new(query.map { |k, v| v }) }
-      end
-
-      AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}/part-00000", local_file_path)
-
-      FileUtils.rm(local_file_path)
+      AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}/part-00000", file)
 
       render json: {retargeting_link: "#{time}/#{temp_file_name}"}, status: :accepted
     end
