@@ -107,10 +107,8 @@ module Blazer
       process_tables(@statement, @query.data_source)
       process_file_link(@statement, @query.data_source)
 
-      time = Time.now.strftime('%Y%m%d')
-      temp_file_path = "CSV/#{time}/"
+      temp_file_path = "CSV/"
       temp_file_name = "#{variable_params[:start_at]}_#{variable_params[:end_at]}_#{@query.name}.csv"
-      local_file_path = "#{Rails.root}/tmp/upload/#{temp_file_name}"
       options = {}
 
       @bind_links.map{ |link|
@@ -119,9 +117,9 @@ module Blazer
 
       file = @cloud.extract_url(@statement, @query.id, options)
 
-      AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}/part-00000", file)
+      link = AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}", file)
 
-      render json: {retargeting_link: "#{time}/#{temp_file_name}"}, status: :accepted
+      render json: {retargeting_link: link}, status: :accepted
     end
 
     def export
