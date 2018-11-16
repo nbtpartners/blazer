@@ -44,7 +44,7 @@
 </style>
 <% if (@bind_vars + @bind_links).any? %>
   <div></div>
-  <form id="bind_" method="get" action="<%= export_query_path(query_id: @query.id, format: "csv") %>" class="form-inline" style="margin-bottom: 10px;">
+  <form id="bind_" method="post" action="<%= export_query_path %>" class="form-inline" style="margin-bottom: 10px;">
     <% date_vars = ["start_time", "end_time"] %>
     <% if (date_vars - @bind_vars - @bind_links).empty? %>
       <% @bind_vars = @bind_vars - date_vars %>
@@ -170,8 +170,11 @@
       </script>
     <% end %>
 
-    <input type="button" class="btn btn-success" value="Run" style="vertical-align: top; margin-top: 12px;" onclick="run();"/>
-    <input type="button" class="btn btn-default" value="링크저장" style="vertical-align: top; margin-top: 12px;" onclick="show_link();"/>
+    <% if @query.data_source == 'Big Query' %>
+      <input type="button" class="btn btn-success" value="전체 모수 확인" style="vertical-align: top; margin-top: 12px;" onclick="total_rows();"/>
+    <% end %>
+    <input type="button" class="btn btn-success" value="Run(10만 제한)" style="vertical-align: top; margin-top: 12px;" onclick="run();"/>
+    <input type="button" class="btn btn-success" value="링크저장" style="vertical-align: top; margin-top: 12px;" onclick="show_link();"/>
     <hr>
     <div color="blue">
       <div id="gcs_link" style="font-size: 15; color: blue"></div>
@@ -218,9 +221,23 @@
               type: 'POST',
               success: function (result) {
                   alert('성공!');
-                  console.log(result);
-                  test = result;
                   $("#gcs_link").text(result["gcs_file_link"]);
+              }
+          });
+      }
+
+      function total_rows(e) {
+          data = $("#bind_").serializeObject();
+          data['query_id'] = <%=@query.id%>;
+
+          $(".text-muted").text('Loading...')
+          $.ajax({
+              url: '/blazer/queries/total_rows',
+              data: data,
+              type: 'POST',
+              success: function (result) {
+                  alert('성공!');
+                  $(".text-muted").text('전체 : ' + result["rows_count"] + ' rows');
               }
           });
       }

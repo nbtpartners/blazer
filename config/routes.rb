@@ -5,10 +5,11 @@ Blazer::Engine.routes.draw do
     post :refresh, on: :member
     get :tables, on: :collection
     get :schema, on: :collection
-    get :export, on: :member
+    post :export, on: :member
     get :summarize_table, on: :collection
     post :show_link, on: :collection
     post :upload_s3, on: :collection
+    post :total_rows, on: :collection
   end
   resources :checks, except: [:show] do
     get :run, on: :member

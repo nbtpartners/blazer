@@ -6,6 +6,8 @@ module Blazer
 
     before_action :load_service
 
+    skip_before_action :verify_authenticity_token
+
     def home
       if params[:filter] == "dashboards"
         @queries = []
@@ -108,7 +110,6 @@ module Blazer
       process_file_link(@statement, @query.data_source)
 
       temp_file_path = "CSV/"
-      temp_file_name = "#{variable_params[:start_at]}_#{variable_params[:end_at]}_#{@query.name}.csv"
       options = {}
 
       @bind_links.map{ |link|
@@ -117,7 +118,7 @@ module Blazer
 
       file = @cloud.extract_url(@statement, @query.id, options)
 
-      link = AwsS3Service.new.upload_file(temp_file_path, "#{temp_file_name}", file)
+      link = AwsS3Service.new.upload_file(temp_file_path, file.path.split('/').last, file)
 
       render json: {retargeting_link: link}, status: :accepted
     end
@@ -155,8 +156,24 @@ module Blazer
 
         send_file file
       end
-      #TODO 다운로드 후에 로컬에 파일을 삭제하는 로직이 필요
-      # FileUtils.rm(file.path)
+    end
+
+    def total_rows
+      @query = Query.find_by(id: params[:query_id]) if params[:query_id].present?
+      @statement = @query.statement.dup
+      process_vars(@statement, @query.data_source)
+      process_tables(@statement, @query.data_source)
+      process_file_link(@statement, @query.data_source)
+
+      options = {}
+
+      @bind_links.map{ |link|
+        options[link] = params[link]
+      }
+
+      rows = @cloud.query_total_rows(@statement, options)
+
+      render json: {rows_count: rows}, status: :accepted
     end
 
     def run
