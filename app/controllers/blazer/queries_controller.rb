@@ -6,6 +6,8 @@ module Blazer
 
     before_action :load_service
 
+    skip_before_action :verify_authenticity_token
+
     def home
       if params[:filter] == "dashboards"
         @queries = []
