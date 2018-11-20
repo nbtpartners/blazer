@@ -98,6 +98,8 @@ module Blazer
           if first_row
             select_all("CANCEL #{first_row["pid"].to_i}")
           end
+        elsif mysql?
+          reconnect
         end
       end
 
