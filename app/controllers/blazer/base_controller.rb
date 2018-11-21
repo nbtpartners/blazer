@@ -83,6 +83,7 @@ module Blazer
     def process_file_link(statement, data_source)
       awesome_variables = {}
       @bind_links = @bind_links.select{|var| var.start_with? 'gcs_file_link_'}
+      @bind_links = @bind_links.select{|var| params[var] != '' }
       return [] unless @bind_links.present?
 
       @bind_links.each do |var|
@@ -108,14 +109,16 @@ module Blazer
     def process_tables(statement, data_source)
       (@bind_tables ||= []).concat(Blazer.extract_vars(statement))
       awesome_variables = {}
-      @bind_tables = @bind_tables.select{|r| r.end_with? '_table'}
+      @bind_tables = @bind_tables.select{|r| (r.end_with? '_table') || ((r.start_with? 'gcs_file_link_') && (params[r] == '')) }
       return unless @bind_tables.present?
       @bind_tables.each do |var|
         awesome_variables[var] ||= Blazer.data_sources[data_source].awesome_variables[var]
       end
       @bind_tables.each do |var|
         variable = awesome_variables[var]
-        if variable.present? && variable['type'] == 'table'
+        if var.start_with? 'gcs_file_link_'
+          statement.gsub!("{#{var}}", 'empty' )
+        elsif variable.present? && variable['type'] == 'table'
           prefix_table = variable['value']['name']
           suffix = eval(variable['value']['suffix'])
           value =prefix_table + suffix
