@@ -175,9 +175,16 @@
                 this.error = false
                 cancelAllQueries()
 
-                var data = $.extend({}, params, {statement: this.getSQL(), data_source: $("#query_data_source").val()})
+                var data = $.extend({}, params, {statement: this.getSQL(), data_source: $("#query_data_source").val(), run_type: 'limit'})
 
                 var _this = this
+
+                if($("#query_data_source").val() == 'MySQL' && this.getSQL().indexOf('limit') == -1) {
+                    if(!confirm('limit을 걸지 않으면 최대 50000row만 조회됩니다.')) {
+                        this.running = false
+                        return;
+                    }
+                }
 
                 runQuery(data, function (data) {
                     _this.running = false

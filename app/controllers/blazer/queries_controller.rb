@@ -180,6 +180,7 @@ module Blazer
 
       @query = Query.find_by(id: params[:query_id]) if params[:query_id].present?
       @statement = @query.present? ? @query.statement.dup : params[:statement]
+      @statement = @statement.gsub(';','') << ' limit 50000;' if !@statement.downcase.include?'limit' and params[:run_type] == 'limit'
       data_source = params[:data_source]
       process_vars(@statement, data_source)
       process_tables(@statement, data_source)
