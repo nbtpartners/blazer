@@ -44,7 +44,7 @@
 </style>
 <% if (@bind_vars + @bind_links).any? %>
   <div></div>
-  <form id="bind_" method="post" action="<%= export_query_path %>" class="form-inline" style="margin-bottom: 10px;">
+  <form id="bind_" method="post" action="<%= export_query_path %>" class="form" style="margin-bottom: 10px;">
     <% date_vars = ["start_time", "end_time"] %>
     <% if (date_vars - @bind_vars - @bind_links).empty? %>
       <% @bind_vars = @bind_vars - date_vars %>
@@ -55,7 +55,7 @@
     <% (@bind_vars + @bind_links).each_with_index do |var, i| %>
       <div>
         <%= label_tag var.capitalize %>
-        <div class="input-group">
+        <div class="form-group">
           <% if (awesome_vars = @awesome_vars[var]) %>
             <% data = awesome_vars['value'].map {|v| [v['name'], v['condition']]} %>
             <% if awesome_vars['style'] == 'select' %>
@@ -70,7 +70,14 @@
             <% elsif awesome_vars['style'] == 'radio' %>
               radio
             <% elsif awesome_vars['style'] == 'file' %>
-              <input type="file" multiple="multiple" onchange="file_upload();" style="float:left">
+              <div class="form-group" style="display: block;">
+                <label for="header">CSV파일 헤더 추가</label>
+                <input type="text" id="header" name="header" class="form-control" placeholder="예) google_ad_id, device_id" style="width: 20%">
+              </div>
+              <div class="form-group" style="display: block;">
+                <input type="file" multiple="multiple" id="file">
+              </div>
+              <a class="btn btn-default btn-sm" onclick="file_upload()">업로드</a>
               <div id="loader" class="loader" style="float:left" hidden></div>
               <span id="check" class="glyphicon" style="display:none">&#xe013;</span>
               <input type="text" id="csv_upload" name="<%= var %>" hidden/>
@@ -187,7 +194,9 @@
           var attachment = fileInput.files[0];
           var formData = new FormData();
           formData.append('attachment', attachment, 'filename');
+          formData.append('header', $("input[name=header]").val());
           $("#loader").show();
+          $("#loader").css('display', 'inline-block').css('float', '').css('vertical-align', 'middle');
           $("#check").hide();
 
           $.ajax({
@@ -201,7 +210,14 @@
                   alert('성공!');
                   $("#csv_upload").val(result["table_name"]);
                   $("#loader").hide();
-                  $("#check").show()
+                  $("#check").show();
+              },
+              error: function (error) {
+                  body = $.parseJSON(error.responseText)
+                  alert('업로드를 실패했습니다. 사유 : ' + body['error'] + '\n확인 후 재 업로드 해주세요.');
+                  $("#" + body['param']).parent().addClass('has-error');
+                  $("#loader").hide();
+                  $("#check").css('color','red').show();
               }
           });
       }
