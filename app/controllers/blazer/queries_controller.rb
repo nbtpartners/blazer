@@ -97,7 +97,7 @@ module Blazer
         options[link] = params[link]
       }
 
-      gcs_file_link = @cloud.extract_gcs_link(@statement, @query.id, options)
+      gcs_file_link = @cloud.extract_gcs_link(@statement, @query, options)
 
       render json: {gcs_file_link: gcs_file_link}, status: :accepted
     end
@@ -116,7 +116,7 @@ module Blazer
         options[link] = params[link]
       }
 
-      file = @cloud.extract_url(@statement, @query.id, options)
+      file = @cloud.extract_url(@statement, @query, options)
 
       link = AwsS3Service.new.upload_file(temp_file_path, file.path.split('/').last, file)
 
@@ -152,7 +152,7 @@ module Blazer
           options[link] = params[link]
         }
 
-        file = @cloud.extract_url(@statement, @query.id, options)
+        file = @cloud.extract_url(@statement, @query, options)
 
         send_file file
       end
@@ -171,7 +171,7 @@ module Blazer
         options[link] = params[link]
       }
 
-      rows = @cloud.query_total_rows(@statement, options)
+      rows = @cloud.query_total_rows(@statement, options, @query)
 
       render json: {rows_count: rows}, status: :accepted
     end
