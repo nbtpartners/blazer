@@ -3,7 +3,7 @@
     <div class="pull-right">
       <a href="/divide_cluster/index" style="padding-right: 50px">클러스터 분할 페이지</a>
 
-      <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/users/sign_out" style="margin-right: 40px;" >로그아웃</a>
+      <a data-confirm="Are you sure?" rel="nofollow" data-method="delete" href="/central/logout" style="margin-right: 40px;" >로그아웃</a>
       <% if blazer_user %>
         <%= link_to "All", root_path, class: !params[:filter] ? "active" : nil, style: "margin-right: 40px;" %>
 
