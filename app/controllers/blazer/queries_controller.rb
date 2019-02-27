@@ -1,7 +1,7 @@
 module Blazer
   class QueriesController < BaseController
     before_action :set_query, only: [:show, :edit, :update, :destroy, :refresh, :export]
-    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :refresh, :export]
+    before_action :authenticate_login, only: [:show, :edit, :update, :destroy, :refresh, :export]
     before_action :authenticate_admin, only: [:new, :edit]
 
     before_action :load_service
