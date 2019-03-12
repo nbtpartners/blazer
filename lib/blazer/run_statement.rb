@@ -6,10 +6,9 @@ module Blazer
 
       # audit
       if Blazer.audit
-        audit = Blazer::Audit.new(statement: statement)
+        audit = Blazer::Audit.new(user_id: options[:user_id], statement: statement)
         audit.query = query
         audit.data_source = data_source.id
-        audit.user = options[:user]
         audit.save!
       end
 
