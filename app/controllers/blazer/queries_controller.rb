@@ -151,9 +151,14 @@ module Blazer
           options[link] = params[link]
         }
 
+        file_name = "#{Date.today}_sql_result.csv"
         file = @cloud.extract_url(@statement, @query, options)
 
-        send_file file
+        File.open(file, 'r') do |f|
+          send_data f.read, type: "text/csv' charset=utf-8; header=present", disposition: "attachment; filename=\"#{file_name}"""
+        end
+
+        File.delete(file)
       end
     end
 
