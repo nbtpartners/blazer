@@ -1,7 +1,6 @@
 module Blazer
   class QueriesController < BaseController
     before_action :set_query, only: [:show, :edit, :update, :destroy, :refresh, :export]
-    before_action :authenticate_user!, only: [:show, :edit, :update, :destroy, :refresh, :export]
     before_action :authenticate_admin, only: [:new, :edit]
 
     before_action :load_service
@@ -223,7 +222,7 @@ module Blazer
       elsif @success #process vars에서 생성된 변수
         @run_id = blazer_run_id
 
-        options = {user: blazer_user, query: @query, refresh_cache: params[:check], run_id: @run_id, async: Blazer.async}
+        options = {user_id: session[:staff_id], query: @query, refresh_cache: params[:check], run_id: @run_id, async: Blazer.async}
         url_infos = {}
         blind_links.map{ |link|
           url_infos[link] = params[link]
