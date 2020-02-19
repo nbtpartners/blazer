@@ -53,12 +53,13 @@ module Blazer
               end
             end
 
-            if value =~ /\A\d+\z/
-              value = value.to_i
-            elsif value =~ /\A\d+\.\d+\z/
-              value = value.to_f
+            if var != 'nickname'
+              if value =~ /\A\d+\z/
+                value = value.to_i
+              elsif value =~ /\A\d+\.\d+\z/
+                value = value.to_f
+              end
             end
-
           end
 
           variable = awesome_variables[var]
